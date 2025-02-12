@@ -128,4 +128,19 @@ class Solution(object):
                 break
         nums[ind+1:]=reversed(nums[ind+1:]) # Step 3: reverse the right half:
         return nums
-    ```
+```
+56 Merge Interval :
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+```python
+
+        intervals.sort()
+        ans=[]
+        for i in range(len(intervals)):
+            if not ans  or intervals[i][0]> ans[-1][1]:
+                ans.append(intervals[i])
+            else:
+                ans[-1][1]=max(intervals[i][1],ans[-1][1])
+        return ans
+```
