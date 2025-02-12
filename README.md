@@ -1,4 +1,34 @@
 # DSA
+74 SEARCH A 2D MATRIX
+You are given an m x n integer matrix matrix with the following two properties:
+
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+Given an integer target, return true if target is in matrix or false otherwise.
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+Output: true
+
+APPROACH=>  i converted the 2d matrix as 1d as a asumption and used binary search for the finding the target, to find the i,j is dividing the value with col because the matrix has every thing in a col manner 
+each row has col num eg: row =4 col=4 means 4 num in each row and the every row starts with the index mutiple of 4 which is col
+```python
+  row=len(matrix)
+        col=len(matrix[0])
+        l=0
+        r=row*col-1
+        while l<=r:
+            mid=(l+r)//2
+             i=mid//col #this is based on the nums in col and this is a formula
+            j=mid%col
+            if matrix[i][j]==target:
+                return True
+            elif matrix[i][j]<target:
+                l=mid+1
+            else:
+                r=mid-1
+        return False
+```
+
+
 75 SORT COLORS
 Input: nums = [2,0,2,1,1,0]
 Output: [0,0,1,1,2,2]
