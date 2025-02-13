@@ -1,4 +1,44 @@
 # DSA
+
+169. MAJORITY ELEMENT:
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: 3
+```python
+nums.sort()
+        l=0
+        r=len(nums)-1
+        return nums[(l+r)//2]
+---
+majority=nums[0]
+        vote=0
+        for i in range(len(nums)):
+            if nums[i]==majority:
+                vote+=1
+            else:
+                if vote<=0:
+                    majority=nums[i]
+                    vote+=1
+                else:
+                    vote-=1
+        return majority
+---
+majority=nums[0]
+        votes=0
+        for i in range(len(nums)):
+            if votes==0:
+                majority=nums[i]
+                votes+=1
+            elif majority==nums[i]:
+                votes+=1
+            else:
+                votes-=1
+        return majority
+```
+
 74 SEARCH A 2D MATRIX
 You are given an m x n integer matrix matrix with the following two properties:
 
