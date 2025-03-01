@@ -1,4 +1,98 @@
 # DSA
+40 COMBINATION SUM 2:
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: 
+[
+[1,1,6],
+[1,2,5],
+[1,7],
+[2,6]
+]
+![WhatsApp Image 2025-03-01 at 17 50 38_9ae79fa4](https://github.com/user-attachments/assets/eed4e56d-d78f-45c8-9412-195bbf79f295)
+```python
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        # candidates.sort()
+        # res = []
+
+        # def backtrack(cur, pos, target):
+        #     if target == 0:
+        #         res.append(cur.copy())
+        #         return
+        #     for i in range(pos, len(candidates)):
+        #         if i > pos and candidates[i] == candidates[i - 1]:  # ✅ Skip duplicates
+        #             continue
+        #         if candidates[i] > target:  
+        #             break  
+        #         cur.append(candidates[i])
+        #         backtrack(cur, i + 1, target - candidates[i])  # ✅ Move to next index (no reuse)
+        #         cur.pop()  # Backtrack
+
+        # backtrack([], 0, target)
+        # return res
+        candidates.sort()
+        res=[]
+        def backtrack(i,cur,total):
+            if total==target:
+                res.append(cur.copy())
+                return
+            if total>target or i>=len(candidates):
+                return 
+            cur.append(candidates[i])
+            backtrack(i+1,cur,total+candidates[i])
+            cur.pop()
+            # i+1<len(candiates) if the array like [1,1,1,1]
+            while i+1<len(candidates) and candidates[i]==candidates[i+1]:
+                i+=1
+            backtrack(i+1,cur,total)
+        backtrack(0,[],0)
+        return res
+
+```
+
+39 COMBINATION SUM 1 :
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+Explanation:
+2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+7 is a candidate, and 7 = 7.
+These are the only two combinations.
+![WhatsApp Image 2025-03-01 at 17 50 37_e3d22b65](https://github.com/user-attachments/assets/c8de97da-e326-4de9-b7ec-71c0f7c21ded)
+
+
+```PYTHON
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # res=[]
+        # def backtrack(start,target,path):
+        #     if target==0:
+        #         res.append(list(path))
+        #         return
+        #     for i in range(start,len(candidates)):
+        #         if candidates[i]>target:
+        #             continue
+        #         path.append(candidates[i])
+        #         backtrack(i,target-candidates[i],path)
+        #         path.pop()
+        
+
+        # backtrack(0,target,[])
+        # return res
+        res=[]
+        def backtrack(i,cur,total):
+            if total==target:
+                res.append(cur.copy())
+                return
+            if i>=len(candidates) or total>target:
+                return
+            cur.append(candidates[i]) 
+            backtrack(i,cur,total+candidates[i])
+            cur.pop()
+            backtrack(i+1,cur, total)
+        backtrack(0,[],0)
+        return res
+
+```
 138. COPY LIST WITH RANDOM POINTER [ LINKED LIST ]
 ![image](https://github.com/user-attachments/assets/583c9ec7-af29-47bd-8352-430fd5d18bb9)
 Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
