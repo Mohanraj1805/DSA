@@ -1,4 +1,52 @@
 # DSA
+90 SUBSET 2 AND 78 SUBSET 1:
+
+90. has no duplicate
+Input: nums = [1,2,2]
+Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
+
+78=> it may have duplicate ...
+
+Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+
+![WhatsApp Image 2025-03-01 at 18 18 29_e42c84f7](https://github.com/user-attachments/assets/fe97b31e-d9d9-40d3-9dfd-675a40a8407b)
+```python
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        def back(i,cur):
+            if i>=len(nums):
+                res.append(cur.copy())
+                return
+            cur.append(nums[i])
+            back(i+1,cur)
+            cur.pop()
+            back(i+1,cur)
+        back(0,[])
+        return sorted(res)
+
+```
+```python
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        nums.sort()
+        def back(i,cur):
+            if i>=len(nums):
+                res.append(cur.copy())
+                return
+            cur.append(nums[i])
+            back(i+1,cur)
+            cur.pop()
+            while i+1 < len(nums) and  nums[i] == nums[i+1]:
+                i+=1
+            back(i+1,cur)
+        back(0,[])
+        return res
+```
+
+
 40 COMBINATION SUM 2:
 Input: candidates = [10,1,2,7,6,1,5], target = 8
 Output: 
