@@ -1,4 +1,35 @@
 # DSA
+131. PALINDROME PARTITIONING:
+Input: s = "aab"
+Output: [["a","a","b"],["aa","b"]]
+![WhatsApp Image 2025-03-02 at 19 41 20_a4d6c3ea](https://github.com/user-attachments/assets/7653645b-5126-456f-ab53-4c0e178b067e)
+
+
+```python
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        res=[]
+        part=[]
+        def dfs(i):
+            if i>=len(s):
+                res.append(part.copy())
+                return
+            for j in range(i,len(s)):
+                if isPali(s,i,j):
+                    part.append(s[i:j+1])
+                    dfs(j+1)
+                    part.pop()
+        def isPali(s,l,r):
+            while l<r:
+                if s[l]!=s[r]:
+                    return False
+                l,r=l+1,r-1
+            return True
+       
+    
+        dfs(0)
+        return res
+```
 90 SUBSET 2 AND 78 SUBSET 1:
 
 90. has no duplicate
