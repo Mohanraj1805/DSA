@@ -1,4 +1,52 @@
 # DSA
+Find XOR of numbers from L to R.
+Input: 
+L = 4, R = 8 
+Output:
+8 
+Explanation:
+4 ^ 5 ^ 6 ^ 7 ^ 8 = 8
+```python
+   def findXOR(self, l, r):
+        # Code here
+        # ans=l
+        # for i in range(l+1,r+1):
+        #     ans^=i
+        # return ans
+        def XOR(n):
+            if n % 4 == 0:
+                return n
+            elif n % 4 == 1:
+                return 1
+            elif n % 4 == 2:
+                return n + 1
+            else:
+                return 0
+        
+        # XOR from l to r = XOR(1 to r) ^ XOR(1 to l-1)
+        return XOR(r) ^ XOR(l-1)
+        
+       
+# Number	XOR Result So Far
+# 1	1
+# 2	1 ^ 2 = 3
+# 3	3 ^ 3 = 0
+# 4	0 ^ 4 = 4
+# 5	4 ^ 5 = 1
+# 6	1 ^ 6 = 7
+# 7	7 ^ 7 = 0
+# 8	0 ^ 8 = 8
+# 9	8 ^ 9 = 1
+
+
+# n % 4	XOR(1 to n)
+# 0	n
+# 1	1
+# 2	n+1
+# 3	0
+                
+
+```
 46. PERMUTATION:
 Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
