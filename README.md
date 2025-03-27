@@ -1,4 +1,24 @@
 # DSA
+
+496. NEXT GREATER ELEMENT:
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- ```python
+  class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        st=[]
+        next_great={}
+        for i in reversed(nums2):
+            while st and st[-1] <= i:
+                st.pop()
+            next_great[i]=st[-1] if st else -1
+            st.append(i)
+        return [next_great[i] for i in nums1]
+  ```
 Find XOR of numbers from L to R.
 Input: 
 L = 4, R = 8 
