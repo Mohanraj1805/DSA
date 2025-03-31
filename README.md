@@ -35,7 +35,7 @@ class Solution:
         r=len(height)-1
         leftmax=rightmax=count=0
         while l<r:
-            if height[l] < height[r]:
+            if height[l] <= height[r]:
                 if height[l] >= leftmax:
                     leftmax = height[l]
                 else:
