@@ -1,4 +1,27 @@
 # DSA
+402. REMOVING K DIGIT:
+Input: num = "1432219", k = 3
+Output: "1219"
+Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.
+
+```python
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        
+        st=[]
+        for i in num:
+            while st and k>0 and st[-1] > i:
+                st.pop()
+                k-=1
+            st.append(i)
+        while k>0 and st: # if all the num is small then k is still > 0 pop the num in st
+            st.pop()
+            k-=1
+        res=''.join(st).lstrip('0')
+        return res if res else '0'
+        
+
+```
 42.TRAPPING RAIN WATER:
 
 
