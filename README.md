@@ -1,4 +1,38 @@
 # DSA
+239. MAXIMUM SLIDING WINDOW
+Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+Output: [3,3,5,5,6,7]
+Explanation:
+
+
+
+
+ ```python
+# st=[]
+    
+        # for i in range(len(nums)-k+1):
+        #     max_num=nums[0]
+        #     for j in range(i,i+k):
+        #         max_num=max(max_num,nums[j])
+        #     st.append(max_num)
+        # return st
+        output=[]
+        q=collections.deque()
+        l=r=0
+        while r<len(nums):
+            #pop the smaller values from deque
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)
+            # remove left val from window
+            if q[0]<l:
+                q.popleft()
+            if (r-l+1)>=k:
+                output.append(nums[q[0]])
+                l+=1
+            r+=1
+        return output
+```
 402. REMOVING K DIGIT:
 Input: num = "1432219", k = 3
 Output: "1219"
