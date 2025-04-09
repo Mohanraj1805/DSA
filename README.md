@@ -1,10 +1,39 @@
 # DSA
+
+904 FRUITS INTO BASKET:
+Input: fruits = [1,2,1]
+Output: 3
+Explanation: We can pick from all 3 trees.
+
+
+Example 2:
+
+Input: fruits = [0,1,2,2]
+Output: 3
+Explanation: We can pick from trees [1,2,2].
+If we had started at the first tree, we would only pick from trees [0,1].
+
+
 239. MAXIMUM SLIDING WINDOW
 Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
 Output: [3,3,5,5,6,7]
 Explanation:
 
-
+```python
+def totalFruit(self, fruits: List[int]) -> int:
+        l=max_one=0
+        basket=collections.defaultdict(int)
+        for r in range(len(fruits)):
+            basket[fruits[r]]+=1
+            
+            while len(basket)>2:
+                basket[fruits[l]]-=1
+                if  basket[fruits[l]]==0:
+                    del  basket[fruits[l]]
+                l+=1
+            max_one=max(max_one,r-l+1)
+        return max_one
+```
 
 
  ```python
