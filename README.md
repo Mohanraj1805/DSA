@@ -1,4 +1,26 @@
 # DSA
+424 LONGEST REPEATING CHAR REPLACEMENT:
+Input: s = "ABAB", k = 2
+Output: 4
+Explanation: Replace the two 'A's with two 'B's or vice versa.
+Example 2:
+```python
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count={}
+        res=0
+        l=0
+        for r in range(len(s)):
+            count[s[r]]=1+count.get(s[r],0)
+            
+            while (r-l+1) - max(count.values()) >k: #len of arr - maxfreq
+                count[s[l]]-= 1
+                l+=1
+            res=max(res,r-l+1)
+        return res
+
+
+```
 930 BINARY SUBARRAY WITH K:
 ```python
 def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
