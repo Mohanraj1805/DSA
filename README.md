@@ -1,4 +1,30 @@
 # DSA
+1248 COUNT NICE SUBARRAY
+Input: nums = [1,1,2,1,1], k = 3
+Output: 2
+Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].
+```PYTHON
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        res=0
+        odd=0
+        l,m=0,0
+        for r in range(len(nums)):
+            if nums[r]%2!=0:
+                odd+=1
+            
+            while odd >k:
+                if nums[l]%2!=0:
+                    odd-=1
+                l+=1
+                m=l
+            if odd==k:
+                while nums[m] %2 == 0: #unitl finds odd number
+                    m+=1
+                res+=(m-l)+1
+        return res
+
+```
 424 LONGEST REPEATING CHAR REPLACEMENT:
 Input: s = "ABAB", k = 2
 Output: 4
