@@ -1,4 +1,42 @@
 # DSA
+1423  Maximum Points You Can Obtain from Cards
+Input: cardPoints = [1,2,3,4,5,6,1], k = 3
+Output: 12
+Explanation: After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
+```python
+class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        lsum=0
+        rsum=0
+        maxsum=0
+        for i in range(k):
+            lsum+=cardPoints[i]
+        maxsum=lsum
+        for i in range(1,k+1):
+            lsum-=cardPoints[k-i]
+            rsum+=cardPoints[-i]
+            maxsum=max(maxsum,lsum+rsum)
+        return maxsum
+
+        # Take all k cards from the start initially
+        #for i in range(k):
+         #   lsum += cardPoints[i]
+        # Now shift one card at a time from left to right
+        for i in range(1, k + 1):
+            lsum -= cardPoints[k - i]        # Remove the last of the left part
+            rsum += cardPoints[-i]           # Add the card from the end (right)
+            maxsum = max(maxsum, lsum + rsum)
+
+Initial lsum = 1 + 2 + 3 = 6, rsum = 0, maxsum = 6
+
+Iteration 1: Remove 3, Add 1 → lsum = 3, rsum = 1, total = 4
+
+Iteration 2: Remove 2, Add 6 → lsum = 1, rsum = 7, total = 8
+
+Iteration 3: Remove 1, Add 5 → lsum = 0, rsum = 12, total = 12
+
+```
+
 1248 COUNT NICE SUBARRAY
 Input: nums = [1,1,2,1,1], k = 3
 Output: 2
