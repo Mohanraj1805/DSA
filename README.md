@@ -1,4 +1,25 @@
 # DSA
+
+PREMIUM PROBLEM LONGEST SUBSTRING WITH ALMOST K CHAR
+```python
+def max_k(arr,k):
+    l=0
+    max_s=0
+    set_k=dict()
+    for r in range(len(arr)):
+        set_k[arr[r]]=set_k.get(arr[r],0)+1
+        while len(set_k)>2:
+            set_k[arr[l]]-=1 
+            if set_k[arr[l]]==0:
+                del set_k[arr[l]]
+            l+= 1 
+        max_s=max(max_s,r-l+1)
+    return max_s
+arr='aaabbccd'
+k=2
+print(max_k(arr,k))
+            
+```
 1423  Maximum Points You Can Obtain from Cards
 Input: cardPoints = [1,2,3,4,5,6,1], k = 3
 Output: 12
