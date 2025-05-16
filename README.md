@@ -1,5 +1,86 @@
 # DSA
-34. FIRST AND LAST POSITION OF THE SORTED ARRAY:
+33. SEARCH IN ROTATED  ARRAY
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        
+    
+        l=0
+        r=len(nums)-1
+        while l<=r:
+            mid=(l+r)//2
+            if nums[mid]==target:
+                return mid
+            elif nums[l] <= nums[mid]:
+                if nums[l]<=target<nums[mid]:
+                    r=mid-1
+                else:
+                    l=mid+1
+            else:
+                if nums[mid]<target<=nums[r]:
+                    l=mid+1
+                else:
+                    r=mid-1
+        return -1
+
+    #     def search(nums, target):
+    # l, r = 0, len(nums) - 1
+    # while l <= r:
+    #     mid = (l + r) // 2
+    #     if nums[mid] == target:
+    #         return mid
+    #     # Step 1: Check which half is sorted
+    #     if nums[l] <= nums[mid]:  # Left half is sorted
+    #         if nums[l] <= target < nums[mid]:  # Target is in left half
+    #             r = mid - 1
+    #         else:  # Target is in right half
+    #             l = mid + 1
+    #     else:  # Right half is sorted
+    #         if nums[mid] < target <= nums[r]:  # Target is in right half
+    #             l = mid + 1
+    #         else:  # Target is in left half
+    #             r = mid - 1
+    # return -1
+```
+81. SEARCH IN ROTATED  ARRAY II
+
+Input: nums = [2,5,6,0,0,1,2], target = 0
+Output: true
+
+``` python
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        l = 0  # 🔸 Left pointer at start
+        r = len(nums) - 1  # 🔸 Right pointer at end
+
+        while l <= r:  # 🔁 Continue as long as search space is valid
+            m = (l + r) // 2  # 🔸 Midpoint calculation (binary search)
+
+            if nums[m] == target:  # ✅ Target found at middle
+                return True
+
+            elif nums[l] == nums[m] == nums[r]:  # ❗ Duplicate edge case
+                l += 1  # 🔸 Skip duplicate from left
+                r -= 1  # 🔸 Skip duplicate from right
+                continue  # 🔁 Re-evaluate with new boundaries
+
+            elif nums[l] <= nums[m]:  # 🔍 Left half is sorted
+                if nums[l] <= target < nums[m]:  # 🎯 Target in left sorted half
+                    r = m - 1
+                else:  # ➡️ Target in right half
+                    l = m + 1
+
+            else:  # 🔍 Right half is sorted
+                if nums[m] < target <= nums[r]:  # 🎯 Target in right sorted half
+                    l = m + 1
+                else:  # ⬅️ Target in left half
+                    r = m - 1
+
+        return False  # ❌ Target not found
+```
+35. FIRST AND LAST POSITION OF THE SORTED ARRAY:
 ```python
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
